@@ -10,4 +10,29 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleFieldIsNullException(final FieldIsNullException e) {
         return ResponseEntity.badRequest().body(e.getMessage());
     }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<String> handleUserNotFoundException(final UserNotFoundException e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
+
+    @ExceptionHandler(UserOperationException.class)
+    public ResponseEntity<String> handleUserOperationException(final UserOperationException e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
+
+    @ExceptionHandler(LogOperationException.class)
+    public ResponseEntity<String> handleLogOperationException(final LogOperationException e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<String> handleRuntimeException(final RuntimeException e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
+
+    @ExceptionHandler(NoResultFoundException.class)
+    public ResponseEntity<String> handleNoResultFoundException(final NoResultFoundException e) {
+        return ResponseEntity.notFound().build();
+    }
 }
