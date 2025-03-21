@@ -2,6 +2,7 @@ package org.pki.simpleecommerproject.util;
 
 import org.pki.simpleecommerproject.dto.UserDTO;
 import org.pki.simpleecommerproject.entities.User;
+import org.pki.simpleecommerproject.exception.FailedToMapException;
 import org.pki.simpleecommerproject.exception.FieldIsNullException;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +21,8 @@ public class UserMapper {
         else throw new FieldIsNullException("Email is null");
         if (userDTO.getPassword() != null) user.setPassword(userDTO.getPassword());
         else throw new FieldIsNullException("Password is null");
-        return user;
+        if (user != null) return user;
+        else throw new FailedToMapException("Failed to convert UserDTO to User");
     }
 
     public UserDTO convertToDTO(User user) {
@@ -35,7 +37,8 @@ public class UserMapper {
         else throw new FieldIsNullException("Email is null");
         if (user.getPassword() != null) userDTO.setPassword(user.getPassword());
         else throw new FieldIsNullException("Password is null");
-        return userDTO;
+        if (userDTO != null) return userDTO;
+        else throw new FailedToMapException("Failed to convert User to UserDTO");
     }
 
 }
