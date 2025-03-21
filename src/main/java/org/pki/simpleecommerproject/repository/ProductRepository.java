@@ -16,5 +16,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     Optional<Product> findByName(@Param("name") String name);
 
     @Query("SELECT p FROM Product p WHERE p.cart = :cart")
-    Optional<List<Product>> findItemsByCart(@Param("cart") Cart cart);
+    Optional<List<Product>> findProductsByCart(@Param("cart") Cart cart);
+
+    @Query("SELECT p FROM Product p WHERE p.available = :true")
+    Optional<List<Product>> findAvailableProducts();
 }
