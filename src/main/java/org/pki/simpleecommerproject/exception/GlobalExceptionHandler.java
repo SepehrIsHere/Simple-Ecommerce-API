@@ -50,4 +50,19 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleFailedToMapException(final FailedToMapException e) {
         return ResponseEntity.badRequest().body(e.getMessage());
     }
+
+    @ExceptionHandler(CartOperationException.class)
+    public ResponseEntity<String> handleCartOperationException(final CartOperationException e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
+
+    @ExceptionHandler(CartNotFoundException.class)
+    public ResponseEntity<String> handleCartNotFoundException(final CartNotFoundException e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<String> handleRunTimeException(final RuntimeException e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
 }
