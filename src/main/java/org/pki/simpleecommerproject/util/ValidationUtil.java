@@ -17,17 +17,20 @@ public class ValidationUtil {
         return validator.validate(object);
     }
 
-    public boolean isValid(Set<ConstraintViolation<Object>> violations) {
+    public boolean isValid(Object object) {
+        Set<ConstraintViolation<Object>> violations = validate(object);
         return violations.isEmpty();
     }
 
-    public void validateAndThrow(Object object) {
+    public String validateAndThrow(Object object) {
         Set<ConstraintViolation<Object>> violations = validate(object);
-        if (isValid(violations)) {
+        if (!isValid(violations)) {
             StringBuilder msg = new StringBuilder("Validation Failed : ");
             for (ConstraintViolation<Object> violation : violations) {
                 msg.append(violation.getMessage()).append(";");
             }
+            return msg.toString();
         }
+        return null;
     }
 }
