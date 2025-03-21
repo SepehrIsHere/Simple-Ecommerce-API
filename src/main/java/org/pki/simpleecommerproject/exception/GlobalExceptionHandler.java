@@ -35,4 +35,19 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleNoResultFoundException(final NoResultFoundException e) {
         return ResponseEntity.notFound().build();
     }
+
+    @ExceptionHandler(InvalidFieldException.class)
+    public ResponseEntity<String> handleInvalidFieldException(final InvalidFieldException e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
+
+    @ExceptionHandler(ProductOperationException.class)
+    public ResponseEntity<String> handleProductOperationException(final ProductOperationException e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
+
+    @ExceptionHandler(FailedToMapException.class)
+    public ResponseEntity<String> handleFailedToMapException(final FailedToMapException e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
 }
