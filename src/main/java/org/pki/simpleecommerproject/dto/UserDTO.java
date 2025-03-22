@@ -1,6 +1,7 @@
 package org.pki.simpleecommerproject.dto;
 
 import lombok.*;
+import org.pki.simpleecommerproject.entities.User;
 
 @Getter
 @Setter
@@ -17,4 +18,11 @@ public class UserDTO {
     private String email;
 
     private String password;
+
+    public UserDTO(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+    }
 }
